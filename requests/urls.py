@@ -20,4 +20,5 @@ from mysite import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^sum/', views.sum),
+    url(r'^persons/', views.persons),
 ]
