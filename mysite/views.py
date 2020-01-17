@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django import forms
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.csrf import ensure_csrf_cookie
 from mysite.models import Person
@@ -24,5 +24,5 @@ def sum(request):
 
 def persons(request):
     if request.method == 'GET':
-        data = serializers.serialize("json", Person.objects.raw("select * from mysite_person"))
-        return HttpResponse(data)
+        qset = Person.objects.all().values()
+        return JsonResponse(list(qset),safe=False) 
